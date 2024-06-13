@@ -1,0 +1,126 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="container-fluid px-5">
+        <h1 class="mt-4">Contracts</h1>
+        <ol class="breadcrumb mb-5">
+            <li class="breadcrumb-item active">Contracts</li>
+        </ol>
+        <div class="row">
+            <div class="col-xl-8 col-md-10">
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <h5>Contracts</h5>
+                    <!-- First column with comercial and date -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.comercial|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.date|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Second column with tipo_operación and empresa -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.empresa|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.tipo_operacion|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Third column with cliente, commodity, formato, and aditivo -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.cliente|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.commodity|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.descripcion_producto|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.formato|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.aditivo|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Fourth column with broker, comision, and divisa_comision -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            {{ form.broker|as_crispy_field }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.comision|as_crispy_field }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.divisa_comision|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Fifth column with icoterm, entrega, transporte, and centro_coste -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            {{ form.icoterm|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.entrega|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.transporte|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.centro_coste|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Sixth column with forex, pago_dias, precio, and divisa_operacion -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            {{ form.forex|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.pago_dias|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.precio|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.divisa_operacion|as_crispy_field }}
+                        </div>
+                    </div>
+                    <!-- Seventh column with plazo_entrega -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            {{ form.plazo_entrega|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Enter &nbsp;<i class="fa fa-user" aria-hidden="true"></i></button>
+                </form>
+                <button id="refreshButton" class="btn btn-secondary mt-3">Refresh Data</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#refreshButton').click(function() {
+            $.ajax({
+                url: '/refresh-api/',
+                type: 'GET',
+                success: function(response) {
+                    alert('Data refreshed successfully');
+                },
+                error: function(response) {
+                    alert('Failed to refresh data');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+    <main>
+        <div class="container-fluid px-5 custom-containermax-width " >
+            <div class="row">
+                <h1 class="breadcrumb mt-4">Contracts</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Contracts</li>
+                </ol>
+            </div>
+
+            <div class="row">
+                <div>
+                    <form method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        
+                        <div>
+
+                            <!-- TITULO DEL AREA-->
+
+                            <div class="secHead">
+                                <div class="secTitle">Section del tio Gilito</div>
+                            </div>
+
+                            <!-- INFORMACIÓN DEL TRADER Y DE LA FECHA-->
+
+
+                            <div class="create-two-column pb-xxl-4">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_trader">Trader</label></div>
+                                            <div class="customImput">
+                                                {{ form.trader }}
+                                                <div class="fieldselector">
+r
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_date">Fecha del negocio</label></div>
+                                            <div class="customImput">{{ form.date }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+
+
+                            <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
+
+                        
+                        
+                            <div class="create-two-column pb-xxl-4">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_sociedad">Sociedad</label></div>
+                                            <div class="customImput">{{ form.sociedad }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_trade_operation_type">Tipo de operación</label></div>
+                                            <div class="customImput">{{ form.trade_operation_type }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_counterparty">Cliente</label></div>
+                                            <div class="customImput">{{ form.counterparty }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_commodity">Commodity</label></div>
+                                            <div class="customImput">{{ form.commodity }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_delivery_format">Formato</label></div>
+                                            <div class="customImput">{{ form.delivery_format }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_additive">Aditivo</label></div>
+                                            <div class="customImput">{{ form.additive }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                             <!-- TITULO DEL AREA BROKER-->
+
+                             <div class="secHead">
+                                <div class="secTitle">Broker</div>
+                            </div>
+
+                         <!-- INFORMACIÓN DEL BROKER-->
+
+                            <div class="create-two-column pb-xxl-4">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_broker">Broker</label></div>
+                                            <div class="customImput">{{ form.broker }}</div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_broker_fee">Comisión</label></div>
+                                            <div class="customImput">{{ form.broker_fee }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <!-- TITULO DEL AREA-->
+
+                            <div class="secHead">
+                                <div class="secTitle">Logística</div>
+                            </div>
+
+                            <!-- INFORMACIÓN DEL TRADER Y DE LA FECHA-->
+
+                            <div class="pb-xxl-4">
+                            <div class="create-two-column">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_icoterm">ICOTERM</label></div>
+                                            <div class="customImput">{{ form.icoterm }}</div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_cost_center">Centro de coste</label></div>
+                                            <div class="customImput">{{ form.cost_center }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="create-two-column">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_entrega">Lugar de entrega</label></div>
+                                            <div class="customImput">{{ form.entrega }}</div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_freight_cost">Coste de transporte</label></div>
+                                            <div class="customImput">{{ form.freight_cost }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            </div>
+
+
+                            <div class="secHead">
+                                <div class="secTitle">Económicos</div>
+                            </div>
+
+
+                            <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
+
+                        
+                        
+                            <div class="create-two-column">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_price">Precio</label></div>
+                                            <div class="customImput">{{ form.price }}</div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_arranque_crudo">Arranque crudo</label></div>
+                                            <div class="customImput">{{ form.arranque_crudo }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="create-two-column">
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_backing">Backing</label></div>
+                                            <div class="customImput">{{ form.backing }}</div>
+                                        </div>
+                                    </div>
+                                </div>   
+                                <div class="container1">
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel"><label for="id_trade_currency">Divisa de la operación</label></div>
+                                            <div class="customImput">{{ form.trade_currency }}</div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+
+
+                         <!-- INFORMACIÓN DEL BROKER-->
+
+                            
+                        </div>
+
+                    
+                    
+                        <div class="row mt-4">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button type="submit" class="btn btn-primary w-25 p-2">Enter <i class="fa fa-user" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% block extra_js %}
+        {{ form.media }}
+    {% endblock %}
+
+{% endblock %}
+
+
+
+
