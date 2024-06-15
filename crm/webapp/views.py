@@ -3,8 +3,12 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.db import connection
 
-from .forms import CreateUserForm, LoginForm, CustomForm
+
+
+
+from .forms import CreateUserForm, LoginForm, CustomForm, TableSelectForm
 
 from webapp.models import   Cryptocurrency, HistoricalCryptocurrency, Centro, Sociedad, Trader, Commodity_Group, Commodity_Type, Commodity_Subtype, Commodity, Delivery_Format, Additive, Counterparty, Counterparty_Facility, Broker, Currency, ICOTERM, Trade_Operation_Type, Contract
 
@@ -37,6 +41,13 @@ def charts(request):
 def tables(request):
     
     return render(request, 'webapp/tables.html')
+
+
+@login_required(login_url='my-login')
+def tables_manage(request):
+    
+    return render(request, 'webapp/tables-manage.html')
+
 
 """
 @login_required(login_url='my-login')
@@ -190,3 +201,30 @@ def live_search(request):
         return JsonResponse(data, safe=False)
     else:
         return JsonResponse({}, status=400)
+    
+
+
+
+
+def fetch_table_data(table_name):
+    with connection.cursor() as cursor:
+        cursor.execute(f'SELECT * FROM "{table_name}"')
+        columns = [col[0] for col in cursor.description]
+        rows = cursor.fetchall()
+    return columns, rows
+
+
+
+@login_required(login_url='my-login')
+def table_view(request):
+    columns = []
+    rows = []
+    if request.method == 'POST':
+        form = TableSelectForm(request.POST)
+        if form.is_valid():
+            table_name = form.cleaned_data['table']
+            columns, rows = fetch_table_data(table_name)
+    else:
+        form = TableSelectForm()
+    return render(request, 'webapp/table_view.html', {'form': form, 'columns': columns, 'rows': rows})
+

@@ -39,5 +39,8 @@ urlpatterns = [
     path('contracts', views.contracts, name="contracts"),
 
     path('live_search/', live_search, name='live_search'),
+
+    path('table_view', views.table_view, name="table_view"),
+
     
 ]

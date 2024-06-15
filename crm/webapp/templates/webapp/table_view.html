@@ -1,0 +1,61 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+<main>
+    <h1>Select a Table to View</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if columns %}
+    <table id="datatables" class="table">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+                <td>
+                    <!-- Modal trigger button -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal{{ forloop.counter }}">
+                        <i class="fa-solid fa-wrench"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% for row in rows %}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="myModalLabel{{ forloop.counter }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel{{ forloop.counter }}">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Modal content for {{ row }} goes here.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- Additional buttons if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}
