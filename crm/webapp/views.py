@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db import connection
-
+import json
+from django.views.decorators.csrf import csrf_protect
 
 
 
@@ -228,3 +229,36 @@ def table_view(request):
         form = TableSelectForm()
     return render(request, 'webapp/table_view.html', {'form': form, 'columns': columns, 'rows': rows})
 
+
+
+
+
+@login_required(login_url='my-login')
+def update_row(request):
+    if request.method == 'POST':
+        id_trader = request.POST.get('id_trader')
+        trader_name = request.POST.get('trader_name')
+
+        if id_trader:
+            trader = get_object_or_404(Trader, pk=id_trader)
+            trader.trader_name = trader_name
+            trader.save()
+
+            return redirect('table_view')  # Redirect to a suitable page
+
+    return render(request, 'webapp/your_template.html')
+
+
+
+
+@csrf_protect
+def upload_csv(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        rows = data.get('rows', [])
+        # Process rows and insert into the database
+        for row in rows:
+            # Assuming you have a model named `YourModel`
+            Trader.objects.create(**row)
+        return JsonResponse({'message': 'CSV data uploaded successfully!'})
+    return JsonResponse({'error': 'Invalid request'}, status=400)

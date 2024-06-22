@@ -42,5 +42,6 @@ urlpatterns = [
 
     path('table_view', views.table_view, name="table_view"),
 
+    path('update-row/', views.update_row, name='update_row'),
     
 ]

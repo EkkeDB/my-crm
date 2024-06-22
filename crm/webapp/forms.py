@@ -138,5 +138,4 @@ class TableSelectForm(forms.Form):
 class TraderForm(forms.ModelForm):
     class Meta:
         model = Trader
-        fields = ['trader_name', 'id_trader']  # Add other fields from Trader model as needed
-        # You can customize widgets, labels, and other attributes as necessary
+        fields = ['trader_name']

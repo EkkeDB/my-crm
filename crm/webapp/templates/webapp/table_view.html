@@ -2,7 +2,12 @@
 
 {% block content %}
 <main>
-    <h1>Select a Table to View</h1>
+    <div class="container-fluid px-5 custom-containermax-width " >
+    <h1 class="mt-4">Select a Table to View</h1>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#csvModal">
+                Paste CSV Code
+            </button>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -26,8 +31,8 @@
                 <td>{{ cell }}</td>
                 {% endfor %}
                 <td>
-                    <!-- Modal trigger button -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal{{ forloop.counter }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                            data-id="{{ row.0 }}" data-trader-name="{{ row.1 }}">
                         <i class="fa-solid fa-wrench"></i>
                     </button>
                 </td>
@@ -37,25 +42,128 @@
     </table>
     {% endif %}
 
-    {% for row in rows %}
-    <!-- Modal -->
-    <div class="modal fade" id="myModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="myModalLabel{{ forloop.counter }}" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel{{ forloop.counter }}">Modal Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Modal content for {{ row }} goes here.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- Additional buttons if needed -->
-                </div>
+                <form method="post" action="{% url 'update_row' %}">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="idTraderInput" name="id_trader" value="">
+                        <label for="traderNameInput">Trader Name:</label>
+                        <input type="text" id="traderNameInput" name="trader_name" class="form-control" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    {% endfor %}
+    
+        <div class="modal fade" id="csvModal" tabindex="-1" aria-labelledby="csvModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="csvModalLabel">Paste CSV Code</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <textarea id="csvTextarea" class="form-control" rows="10" placeholder="Paste your CSV code here"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="uploadCsvButton">Upload CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var myModal = document.getElementById('myModal');
+                myModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;
+                    var traderId = button.getAttribute('data-id');
+                    var traderName = button.getAttribute('data-trader-name');
+
+                    var modalTitle = myModal.querySelector('.modal-title');
+                    var idTraderInput = myModal.querySelector('#idTraderInput');
+                    var traderNameInput = myModal.querySelector('#traderNameInput');
+
+                    modalTitle.textContent = 'Edit Trader';
+                    idTraderInput.value = traderId;
+                    traderNameInput.value = traderName;
+                });
+            });
+    </script>
+
+    <script>
+        function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+            }
+        }
+        return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        document.getElementById('uploadCsvButton').addEventListener('click', function () {
+        const csvText = document.getElementById('csvTextarea').value;
+        if (csvText.trim() === '') {
+            alert('Please paste some CSV data.');
+            return;
+        }
+
+        const rows = csvText.trim().split('\n').map(row => row.split(','));
+        const headers = rows[0];
+        const data = rows.slice(1).map(row => {
+            let obj = {};
+            row.forEach((val, index) => {
+            obj[headers[index]] = val.trim();
+            });
+            return obj;
+        });
+
+        $.ajax({
+            url: '/upload-csv/', // Replace with your endpoint URL
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ rows: data }),
+            headers: {
+            'X-CSRFToken': csrftoken
+            },
+            success: function (response) {
+            alert('CSV data uploaded successfully!');
+            location.reload(); // Reload the page to see the updated table
+            },
+            error: function (xhr, status, error) {
+            alert('Error uploading CSV data: ' + error);
+            }
+        });
+        });
+    </script>
+
+
+
+    </div>
+
 </main>
+
+
+
 {% endblock %}
