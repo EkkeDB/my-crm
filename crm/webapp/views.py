@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.db import connection
 import json
 from django.views.decorators.csrf import csrf_protect
+from django.core.management import call_command
 
 
 
@@ -173,9 +174,28 @@ def crypto(request):
 
 @login_required(login_url='my-login')
 def mycrypto(request):
+    if request.method == 'GET':
+        try:
+            # Call fetch_crypto_data command to update cryptocurrency data
+            call_command('fetch_crypto_data')
+        except Exception as e:
+            # Handle any errors that occur during data fetch
+            return JsonResponse({'status': 'error', 'message': str(e)})
+        
+    # Retrieve all Cryptocurrency objects from the database
     cryptos = Cryptocurrency.objects.all()
+    
+    # Render the template with the cryptocurrency data
     return render(request, 'webapp/mycrypto.html', {'cryptos': cryptos})
 
+
+@login_required(login_url='my-login')
+def fetch_crypto_data_view(request):
+    if request.method == 'POST':
+        call_command('fetch_crypto_data')
+        return JsonResponse({'status': 'success', 'message': 'Data fetched successfully.'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method.'})
 
 
 

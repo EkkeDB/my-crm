@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import live_search
+from .views import live_search, fetch_crypto_data_view
 
 
 from . import views
@@ -35,6 +35,8 @@ urlpatterns = [
     path('crypto', views.crypto, name="crypto"),
 
     path('mycrypto', views.mycrypto, name="mycrypto"),
+
+    path('fetch-crypto-data/', fetch_crypto_data_view, name='fetch_crypto_data'),
 
     path('contracts', views.contracts, name="contracts"),
 
