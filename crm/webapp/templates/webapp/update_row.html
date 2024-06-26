@@ -1,0 +1,17 @@
+<!-- update_row.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Trader</title>
+</head>
+<body>
+    <h2>Update Trader</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="trader_name">Trader Name:</label>
+        <input type="text" id="trader_name" name="trader_name" value="{{ trader.trader_name }}">
+        <br><br>
+        <input type="submit" value="Update Trader">
+    </form>
+</body>
+</html>

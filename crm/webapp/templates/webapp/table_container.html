@@ -1,0 +1,29 @@
+<div id="tableContainer">
+    {% if columns %}
+    <table id="datatables" class="table">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                            data-id="{{ row.0 }}" data-trader-name="{{ row.1 }}">
+                        <i class="fa-solid fa-wrench"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>

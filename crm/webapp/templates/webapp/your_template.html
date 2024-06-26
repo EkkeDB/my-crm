@@ -1,0 +1,10 @@
+<!-- your_app/templates/your_app/your_template.html -->
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+<main>
+    <h1>Form Submitted Successfully</h1>
+    <p>Your changes have been saved.</p>
+    <a href="{% url 'your_list_view_url' %}" class="btn btn-primary">Go Back to List</a>
+</main>
+{% endblock %}

@@ -245,3 +245,14 @@ class Contract(models.Model):
     def __str__(self):
         return f"{self.comercial} - {self.tipo_operacion}"
 
+
+
+
+class TableNames(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        #return self.name
+        return f"{self.name}"
+    
+

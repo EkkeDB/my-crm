@@ -23,3 +23,9 @@ python manage.py collectstatic
 ```python
 python manage.py runserver
 ```
+
+## To run Postgres:
+
+```
+sudo service postgresql start
+```
