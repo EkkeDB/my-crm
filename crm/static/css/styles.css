@@ -11337,6 +11337,18 @@ body {
 }
 
 
+.customImput input[type="date"]{
+  align-self: flex-start;
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 390px;
+  min-width: 230px;
+  position: relative;
+  /*vertical-align: bottom;*/
+}
+
+
 .customImput input[type="text"]{
   align-self: flex-start;
   display: block;
@@ -11447,3 +11459,5 @@ body {
   width: 1.5rem;
 
 }
+
+

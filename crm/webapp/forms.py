@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput, DateInput  
 from django.db import connection
 from django.apps import apps
+from datetime import date
 
 from crispy_forms.layout import Layout, Div, Field
 from crispy_forms.helper import FormHelper
@@ -62,8 +63,9 @@ class CustomForm(forms.ModelForm):
             'date':                     DateInput(
                 attrs={
                     'type': 'date',
-                    'class': 'form-control',
-                    'id': 'date-input'
+                    'class': 'form-control' 'customInput',
+                    'id': 'date-input',
+                    'max': date.today().isoformat(),
                 
             }),
         }
