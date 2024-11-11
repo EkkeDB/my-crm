@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.forms.widgets import PasswordInput, TextInput
+from django.forms.widgets import PasswordInput, TextInput, DateInput  
 from django.db import connection
 from django.apps import apps
 
@@ -59,9 +59,12 @@ class CustomForm(forms.ModelForm):
             'price':                    TextInput(attrs={'id': 'price-input'}),
             'trade_currency':           TextInput(attrs={'id': 'trade-currency-input'}),
             'delivery_period':          TextInput(attrs={'id': 'delivery-period-input'}),
-            'date':                     DatePickerInput(options={
-                "format": "DD/MM/YYYY",
-                "locale": "en"
+            'date':                     DateInput(
+                attrs={
+                    'type': 'date',
+                    'class': 'form-control',
+                    'id': 'date-input'
+                
             }),
         }
 
