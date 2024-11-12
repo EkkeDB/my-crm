@@ -113,7 +113,7 @@ class Commodity(models.Model):
     commodity_subtype           = models.ForeignKey(Commodity_Subtype, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.id_producto} - {self.nombre_producto}"
+        return f"{self.id_commodity} - {self.commodity_name_short}"
     
 
 #+++++++ DATOS DE FORMATO Y ADITIVO +++++++

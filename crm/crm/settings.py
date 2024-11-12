@@ -58,9 +58,11 @@ INSTALLED_APPS = [
     'dal_select2',
     'django_bootstrap5',  # Or 'django_bootstrap4' if using Bootstrap 4
     'bootstrap_datepicker_plus',
+    'widget_tweaks',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 BOOTSTRAP_DATEPICKER_PLUS = {
     # Options for all input widgets

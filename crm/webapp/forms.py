@@ -44,7 +44,7 @@ class CustomForm(forms.ModelForm):
             'trade_operation_type':     TextInput(attrs={'id': 'trade-operation-type-input'}),
             'sociedad':                 TextInput(attrs={'id': 'sociedad-input'}),
             'counterparty':             TextInput(attrs={'id': 'counterparty-input'}),
-            'commodity':                TextInput(attrs={'id': 'commodity-input'}),
+            'commodity':                Div(attrs={'id': 'commodity-input', 'class': 'dropdown'}),
             'commodity_group':          TextInput(attrs={'id': 'commodity-group-input'}),
             'delivery_format':          TextInput(attrs={'id': 'delivery-format-input'}),
             'additive':                 TextInput(attrs={'id': 'additive-input'}),
