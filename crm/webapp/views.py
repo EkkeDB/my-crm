@@ -282,3 +282,20 @@ def upload_csv(request):
             Trader.objects.create(**row)
         return JsonResponse({'message': 'CSV data uploaded successfully!'})
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+# To search in MODAL
+
+
+
+def fetch_data(request, table_name):
+    data = []
+    if table_name == 'sociedad':
+        data = list(Sociedad.objects.values())  # Fetch all columns
+    elif table_name == 'counterparty':
+        data = list(Counterparty.objects.values())  # Fetch all columns
+    elif table_name == 'commodity':
+        data = list(Commodity.objects.values())  # Fetch all columns
+
+    # Return the data as a JSON response
+    return JsonResponse({'data': data})

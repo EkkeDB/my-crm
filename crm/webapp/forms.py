@@ -66,6 +66,8 @@ class CustomForm(forms.ModelForm):
                     'class': 'form-control' 'customInput',
                     'id': 'date-input',
                     'max': date.today().isoformat(),
+                    'value': date.today().isoformat(),
+                    
                 
             }),
         }

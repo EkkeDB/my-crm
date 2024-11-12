@@ -50,31 +50,64 @@
                                 </div>  
                             </div>
 
-
-                            <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
-
-
+                            <!-- MODAL -->
                             
-                        
+
+                            <div class="modal fade" tabindex="-1" id="myModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Select a record</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+                                            <div id="modalContent"></div>
+                                        </div>
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
                         
                             <div class="create-two-column pb-xxl-4">
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel"><label for="id_sociedad">Sociedad</label></div>
-                                            <div class="customImput">{{ form.sociedad }}</div>
+                                            <div class="input-group">
+                                                <input type="text" id="sociedad" name="sociedad">
+                                                    <button onclick="openModal('sociedad')"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel"><label for="id_trade_operation_type">Tipo de operación</label></div>
-                                            <div class="customImput">{{ form.trade_operation_type }}</div>
+                                            <div class="input-group">
+                                                <input type="text" id="trade_operation_type" name="trade_operation_type">
+                                                    <button onclick="openModal('trade_operation_type')"><i class="fas fa-search"></i></button>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel"><label for="id_counterparty">Cliente</label></div>
-                                            <div class="customImput">{{ form.counterparty }}</div>
+                                            <div class="input-group">
+                                                <input type="text" id="counterparty" name="counterparty">
+                                                    <button onclick="openModal('counterparty')"><i class="fas fa-search"></i></button>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +278,12 @@
                 </div>
             </div>
         </div>
-    </main>
+   </main>
+
+    <script>
+        const fetchDataBaseUrl = "{% url 'fetch_data' 'table_name' %}".slice(0, -11); // Remove the placeholder part
+    </script>
+
 
     {% block extra_js %}
         {{ form.media }}

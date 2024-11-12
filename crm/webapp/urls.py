@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import live_search, fetch_crypto_data_view
+from .views import live_search, fetch_crypto_data_view, fetch_data
 
 
 from . import views
@@ -41,6 +41,10 @@ urlpatterns = [
     path('contracts', views.contracts, name="contracts"),
 
     path('live_search/', live_search, name='live_search'),
+
+    path('fetch_data/', fetch_data, name='fetch_data'),
+
+    path('fetch_data/<str:table_name>/', views.fetch_data, name='fetch_data'),
 
     path('table_view', views.table_view, name="table_view"),
 

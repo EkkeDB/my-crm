@@ -60,3 +60,69 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+<!-- MODAL LIVE SEARCH -->
+
+
+
+function openModal(inputName) {
+    const url = fetchDataBaseUrl + inputName + '/';
+
+    // Clear previous table data
+    $('#dataTable').DataTable().clear().destroy();
+    $('#modalContent').empty();
+
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: function(response) {
+            let data = response.data;
+
+            if (data.length > 0) {
+                let headers = Object.keys(data[0]);
+
+                // Create table structure
+                let tableHtml = '<table id="dataTable" class="display table table-striped">';
+                tableHtml += '<thead><tr>';
+
+                headers.forEach(header => {
+                    tableHtml += `<th>${header.charAt(0).toUpperCase() + header.slice(1)}</th>`;
+                });
+                tableHtml += '</tr></thead><tbody>';
+
+                data.forEach(item => {
+                    tableHtml += `<tr onclick="selectRow('${item[headers[0]]}', '${inputName}')">`;
+                    headers.forEach(header => {
+                        tableHtml += `<td>${item[header]}</td>`;
+                    });
+                    tableHtml += '</tr>';
+                });
+
+                tableHtml += '</tbody></table>';
+
+                $('#modalContent').append(tableHtml);
+                $('#dataTable').DataTable();
+
+            } else {
+                $('#modalContent').append('<p>No data available</p>');
+            }
+
+            // Show the modal
+            $('#myModal').modal('show');
+        },
+        error: function() {
+            alert("Error loading data");
+        }
+    });
+}
+
+// Function to handle row selection
+function selectRow(value, inputName) {
+    document.getElementById(inputName).value = value;
+    closeModal();
+}
+
+// Function to close the modal
+function closeModal() {
+    $('#myModal').modal('hide');
+}
