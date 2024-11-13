@@ -172,7 +172,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'my_crm_postgre',
-        'USER': 'ekke',
+        'USER': 'postgres',
         'PASSWORD': 'Tyrande01',
         'HOST': 'localhost',  # or your PostgreSQL host
         'PORT': '5432',       # or your PostgreSQL port

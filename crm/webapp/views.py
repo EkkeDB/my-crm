@@ -12,7 +12,7 @@ from django.core.management import call_command
 
 from .forms import CreateUserForm, LoginForm, CustomForm, TableSelectForm
 
-from webapp.models import   Cryptocurrency, HistoricalCryptocurrency, Centro, Sociedad, Trader, Commodity_Group, Commodity_Type, Commodity_Subtype, Commodity, Delivery_Format, Additive, Counterparty, Counterparty_Facility, Broker, Currency, ICOTERM, Trade_Operation_Type, Contract
+from webapp.models import   Cryptocurrency, HistoricalCryptocurrency, Cost_Center, Sociedad, Trader, Commodity_Group, Commodity_Type, Commodity_Subtype, Commodity, Delivery_Format, Additive, Counterparty, Counterparty_Facility, Broker, Currency, ICOTERM, Trade_Operation_Type, Contract
 
 
 
@@ -287,15 +287,32 @@ def upload_csv(request):
 # To search in MODAL
 
 
+# Mapping table names to model classes
+model_mapping = {
+    'sociedad': Sociedad,
+    'counterparty': Counterparty,
+    'commodity': Commodity,
+    'trade_operation_type': Trade_Operation_Type,
+    'cryptocurrency': Cryptocurrency,
+    'historical_cryptocurrency': HistoricalCryptocurrency,
+    'cost_center': Cost_Center,
+    'trader': Trader,
+    'commodity_group': Commodity_Group,
+    'commodity_type': Commodity_Type,
+    'commodity_subtype': Commodity_Subtype,
+    'delivery_format': Delivery_Format,
+    'additive': Additive,
+    'broker': Broker,
+    'currency': Currency,
+    'icoterm': ICOTERM,
+    'contract': Contract,
+    'counterparty_facility': Counterparty_Facility
+}
 
 def fetch_data(request, table_name):
-    data = []
-    if table_name == 'sociedad':
-        data = list(Sociedad.objects.values())  # Fetch all columns
-    elif table_name == 'counterparty':
-        data = list(Counterparty.objects.values())  # Fetch all columns
-    elif table_name == 'commodity':
-        data = list(Commodity.objects.values())  # Fetch all columns
+    model = model_mapping.get(table_name)
+    if model is None:
+        return JsonResponse({'error': 'Invalid table name'}, status=400)
 
-    # Return the data as a JSON response
+    data = list(model.objects.values())
     return JsonResponse({'data': data})

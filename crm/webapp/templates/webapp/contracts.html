@@ -33,9 +33,33 @@
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_trader">Trader</label></div>
-                                            <div class="customImput">
-                                                {{ form.trader }}
+                                            <div class="customfieldLabel">
+                                                <label for="id_trader">Trader</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_trader" name="id_trader">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="trader_name" 
+                                                    name="trader_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar trader..." 
+                                                    readonly 
+                                                    aria-label="Buscar trader" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('trader')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -43,93 +67,224 @@
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_date">Fecha del negocio</label></div>
-                                            <div class="customImput">{{ form.date }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_date">Fecha del negocio</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Visible input to display the date -->
+                                                <input id="startDate" class="form-control" type="date" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>  
+                                </div>   
                             </div>
 
-                            <!-- MODAL -->
-                            
-
-                            <div class="modal fade" tabindex="-1" id="myModal" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Select a record</h5>
-                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <!-- Modal Body -->
-                                        <div class="modal-body">
-                                            <div id="modalContent"></div>
-                                        </div>
-                                        <!-- Modal Footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             
                             
                             
-                        <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
+                            <!-- INFORMACIÓN DEL LA OPERACIÓN Y QUIEN OPERA-->
                         
                             <div class="create-two-column pb-xxl-4">
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_sociedad">Sociedad</label></div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_sociedad">Sociedad</label>
+                                            </div>
                                             <div class="input-group">
-                                                <input type="text" id="sociedad" name="sociedad">
-                                                    <button onclick="openModal('sociedad')"><i class="fas fa-search"></i></button>
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_sociedad" name="id_sociedad">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="sociedad_name" 
+                                                    name="sociedad_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar sociedad..." 
+                                                    readonly 
+                                                    aria-label="Buscar sociedad" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('sociedad')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_trade_operation_type">Tipo de operación</label></div>
-                                            <div class="input-group">
-                                                <input type="text" id="trade_operation_type" name="trade_operation_type">
-                                                    <button onclick="openModal('trade_operation_type')"><i class="fas fa-search"></i></button>
+                                            <div class="customfieldLabel">
+                                                <label for="id_sociedad">Tipo de Operación</label>
                                             </div>
-                                            
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_trade_operation_type" name="id_trade_operation_type">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="trade_operation_type_name" 
+                                                    name="trade_operation_type_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Tipo de Operación..." 
+                                                    readonly 
+                                                    aria-label="Buscar Tipo de Operación" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('trade_operation_type')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
+
+                                   
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_counterparty">Cliente</label></div>
-                                            <div class="input-group">
-                                                <input type="text" id="counterparty" name="counterparty">
-                                                    <button onclick="openModal('counterparty')"><i class="fas fa-search"></i></button>
+                                            <div class="customfieldLabel">
+                                                <label for="id_counterparty">Cliente</label>
                                             </div>
-                                            
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_counterparty" name="id_counterparty">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="counterparty_name" 
+                                                    name="counterparty_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar cliente..." 
+                                                    readonly 
+                                                    aria-label="Buscar cliente" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('counterparty')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_commodity">Commodity</label></div>
-                                            <div class="customImput">{{ form.commodity }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_commodity">Commodity</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_commodity" name="id_commodity">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="commodity_name_short" 
+                                                    name="commodity_name_short" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Commodity..." 
+                                                    readonly 
+                                                    aria-label="Buscar Commodity" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('commodity')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="formContainer">
+                                        <div class="formFields">
+                                            <div class="customfieldLabel">
+                                                <label for="id_delivery_format">Formato</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_delivery_format" name="id_delivery_format">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="delivery_format_name" 
+                                                    name="delivery_format_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Formatos..." 
+                                                    readonly 
+                                                    aria-label="Buscar Formatos" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('delivery_format')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_delivery_format">Formato</label></div>
-                                            <div class="customImput">{{ form.delivery_format }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_additive">Aditivos</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_additive" name="id_additive">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="additive_name" 
+                                                    name="additive_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Aditivos..." 
+                                                    readonly 
+                                                    aria-label="Buscar Aditivos" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('additive')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="formContainer">
-                                        <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_additive">Aditivo</label></div>
-                                            <div class="customImput">{{ form.additive }}</div>
-                                        </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
 
@@ -148,16 +303,68 @@
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_broker">Broker</label></div>
-                                            <div class="customImput">{{ form.broker }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_broker">Broker</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_broker" name="id_broker">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="broker_name" 
+                                                    name="broker_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Broker..." 
+                                                    readonly 
+                                                    aria-label="Buscar Broker" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('broker')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>   
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_broker_fee">Comisión</label></div>
-                                            <div class="customImput">{{ form.broker_fee }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_broker">Broker Fee</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_broker" name="id_broker">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="broker_name" 
+                                                    name="broker_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Broker..." 
+                                                     
+                                                    aria-label="Buscar Broker" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('broker')"
+                                                >
+                                                    <i class="fa fa-eur"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>  
@@ -175,44 +382,155 @@
 
                             <!-- INFORMACIÓN DEL TRADER Y DE LA FECHA-->
 
-                            <div class="pb-xxl-4">
-                            <div class="create-two-column">
+                            <div class="create-two-column pb-xxl-4">
+                                    <div class="container1">
+                                        <div class="formContainer">
+                                            <div class="formFields">
+                                                <div class="customfieldLabel">
+                                                    <label for="id_icoterm">icoterm</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!-- Hidden input to store the ID -->
+                                                    <input type="hidden" id="id_icoterm" name="id_icoterm">
+                                                    
+                                                    <!-- Visible input to display the nombre_sociedad -->
+                                                    <input 
+                                                        type="text" 
+                                                        id="icoterm_name" 
+                                                        name="icoterm_name" 
+                                                        class="form-control" 
+                                                        placeholder="Buscar icoterm..." 
+                                                        readonly 
+                                                        aria-label="Buscar icoterm" 
+                                                        aria-describedby="btnSearch"
+                                                    />
+                                                    <!-- Button inside the input field -->
+                                                    <button 
+                                                        class="btn btn-outline-secondary" 
+                                                        type="button" 
+                                                        id="btnSearch" 
+                                                        onclick="openModal('icoterm')"
+                                                    >
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                       
+                                    <div class="container1">
+                                        <div class="formContainer">
+                                            <div class="formFields">
+                                                <div class="customfieldLabel">
+                                                    <label for="id_cost_center">cost_center</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <!-- Hidden input to store the ID -->
+                                                    <input type="hidden" id="id_cost_center" name="id_cost_center">
+                                                    
+                                                    <!-- Visible input to display the nombre_sociedad -->
+                                                    <input 
+                                                        type="text" 
+                                                        id="cost_center_name" 
+                                                        name="cost_center_name" 
+                                                        class="form-control" 
+                                                        placeholder="Buscar Centro de Coste..." 
+                                                        readonly 
+                                                        aria-label="Buscar Centro de Coste" 
+                                                        aria-describedby="btnSearch"
+                                                    />
+                                                    <!-- Button inside the input field -->
+                                                    <button 
+                                                        class="btn btn-outline-secondary" 
+                                                        type="button" 
+                                                        id="btnSearch" 
+                                                        onclick="openModal('cost_center')"
+                                                    >
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                            </div>
+
+                            <div class="create-two-column pb-xxl-4">
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_icoterm">ICOTERM</label></div>
-                                            <div class="customImput">{{ form.icoterm }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_entrega">Lugar de Entrega</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_entrega" name="id_entrega">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="entrega_name" 
+                                                    name="entrega_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Lugar de Entrega..." 
+                                                    readonly 
+                                                    aria-label="Buscar Lugar de Entrega" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('entrega')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>   
+                                   
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_cost_center">Centro de coste</label></div>
-                                            <div class="customImput">{{ form.cost_center }}</div>
+                                            <div class="customfieldLabel">
+                                                <label for="id_cost_center">cost_center</label>
+                                            </div>
+                                            <div class="input-group">
+                                                <!-- Hidden input to store the ID -->
+                                                <input type="hidden" id="id_cost_center" name="id_cost_center">
+                                                
+                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input 
+                                                    type="text" 
+                                                    id="cost_center_name" 
+                                                    name="cost_center_name" 
+                                                    class="form-control" 
+                                                    placeholder="Buscar Centro de Coste..." 
+                                                    readonly 
+                                                    aria-label="Buscar Centro de Coste" 
+                                                    aria-describedby="btnSearch"
+                                                />
+                                                <!-- Button inside the input field -->
+                                                <button 
+                                                    class="btn btn-outline-secondary" 
+                                                    type="button" 
+                                                    id="btnSearch" 
+                                                    onclick="openModal('cost_center')"
+                                                >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>  
-                            </div>
-                            <div class="create-two-column">
-                                <div class="container1">
-                                    <div class="formContainer">
-                                        <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_entrega">Lugar de entrega</label></div>
-                                            <div class="customImput">{{ form.entrega }}</div>
-                                        </div>
-                                    </div>
-                                </div>   
-                                <div class="container1">
-                                    <div class="formContainer">
-                                        <div class="formFields">
-                                            <div class="customfieldLabel"><label for="id_freight_cost">Coste de transporte</label></div>
-                                            <div class="customImput">{{ form.freight_cost }}</div>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
-                            </div>
+                                </div>
+                                  
+                        </div>
+
+
+                            
+                            
 
 
                             <div class="secHead">
@@ -242,6 +560,7 @@
                                     </div>
                                 </div>  
                             </div>
+                            
                             <div class="create-two-column">
                                 <div class="container1">
                                     <div class="formContainer">
@@ -265,7 +584,7 @@
                          <!-- INFORMACIÓN DEL BROKER-->
 
                             
-                        </div>
+                        
 
                     
                     
@@ -278,7 +597,33 @@
                 </div>
             </div>
         </div>
+
    </main>
+
+                    <!-- MODAL -->
+                                                
+
+                        <div class="modal fade" tabindex="-1" id="myModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Select a record</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <div id="modalContent"></div>
+                                    </div>
+                                    <!-- Modal Footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
     <script>
         const fetchDataBaseUrl = "{% url 'fetch_data' 'table_name' %}".slice(0, -11); // Remove the placeholder part

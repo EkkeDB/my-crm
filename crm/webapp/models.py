@@ -38,19 +38,19 @@ class HistoricalCryptocurrency(models.Model):
 
 
 # Define the CENTRO model
-class Centro(models.Model):
-    id_centro               = models.AutoField(primary_key=True)  # Explicit auto-incremental primary key
-    nombre_centro           = models.CharField(max_length=50)
+class Cost_Center(models.Model):
+    id_cost_center              = models.AutoField(primary_key=True)  # Explicit auto-incremental primary key
+    cost_center_name           = models.CharField(max_length=50)
     
 
     def __str__(self):
-        return f"{self.id_centro} - {self.nombre_centro}"
+        return f"{self.id_cost_center} - {self.cost_center_name}"
     
 
 # Define the SOCIEDAD model
 class Sociedad(models.Model):
     id_sociedad             = models.AutoField(primary_key=True)  # Explicit auto-incremental primary key
-    nombre_sociedad         = models.CharField(max_length=50)
+    sociedad_name         = models.CharField(max_length=50)
     
 
     def __str__(self):
@@ -234,7 +234,7 @@ class Contract(models.Model):
     icoterm                     = models.ForeignKey(ICOTERM, on_delete=models.CASCADE)                                                      # Foreign Key
     entrega                     = models.CharField(max_length=50)                                                                           # Texto libre para definir el punto de entrega. se puede mirar igualmente en plantas?
     freight_cost                = models.DecimalField(max_digits=10, decimal_places=2)                                                      # Divisa, decimal
-    cost_center                 = models.ForeignKey(Centro, on_delete=models.CASCADE)                                                       # Divisa, decimal
+    cost_center                 = models.ForeignKey(Cost_Center, on_delete=models.CASCADE)                                                       # Divisa, decimal
     forex                       = models.DecimalField(max_digits=10, decimal_places=4)                                                      # Divisa, decimal
     payment_days                = models.IntegerField()                                                                                     # Integer
     price                       = models.DecimalField(max_digits=10, decimal_places=2)                                                      # Divisa, decimal
