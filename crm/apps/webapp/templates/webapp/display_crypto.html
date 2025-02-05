@@ -1,0 +1,33 @@
+<!-- myapp/templates/myapp/display_crypto.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cryptocurrency Data</title>
+</head>
+<body>
+    <h1>Cryptocurrency Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Current Price (USD)</th>
+                <th>Market Cap</th>
+                <th>Total Volume</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crypto in cryptos %}
+            <tr>
+                <td>{{ crypto.name }}</td>
+                <td>{{ crypto.symbol }}</td>
+                <td>{{ crypto.current_price }}</td>
+                <td>{{ crypto.market_cap }}</td>
+                <td>{{ crypto.total_volume }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
