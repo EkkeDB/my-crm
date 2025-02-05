@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webapp',
+    'crm.apps.webapp',
     'reversion',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -140,7 +140,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'crm.urls'
+ROOT_URLCONF = 'crm.config.urls'
 
 TEMPLATES = [
     {
@@ -158,7 +158,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'crm.wsgi.application'
+WSGI_APPLICATION = 'crm.config.wsgi.application'
 
 
 # Database

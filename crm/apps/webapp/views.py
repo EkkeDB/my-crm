@@ -12,7 +12,7 @@ from django.core.management import call_command
 
 from .forms import CreateUserForm, LoginForm, CustomForm, TableSelectForm
 
-from webapp.models import   Cryptocurrency, HistoricalCryptocurrency, Cost_Center, Sociedad, Trader, Commodity_Group, Commodity_Type, Commodity_Subtype, Commodity, Delivery_Format, Additive, Counterparty, Counterparty_Facility, Broker, Currency, ICOTERM, Trade_Operation_Type, Contract
+from crm.apps.webapp.models import   Cryptocurrency, HistoricalCryptocurrency, Cost_Center, Sociedad, Trader, Commodity_Group, Commodity_Type, Commodity_Subtype, Commodity, Delivery_Format, Additive, Counterparty, Counterparty_Facility, Broker, Currency, ICOTERM, Trade_Operation_Type, Contract
 
 
 
