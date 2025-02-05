@@ -75,7 +75,7 @@ function openModal(inputName) {
             console.log("Data received:", data);  // Check data structure
 
             if (data && data.length > 0) {
-                let tableHtml = '<table id="dataTable" class="display table table-striped">';
+                let tableHtml = '<table width=100% id="dataTable" class="display table table-striped">';
                 tableHtml += '<thead><tr><th>ID</th><th>Name</th></tr></thead><tbody>';
 
                 data.forEach(item => {
