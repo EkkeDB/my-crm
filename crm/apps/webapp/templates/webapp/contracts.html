@@ -87,64 +87,52 @@
                                             <div class="customfieldLabel">
                                                 <label for="id_sociedad">Sociedad</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_sociedad" name="id_sociedad">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_sociedad" name="id_sociedad">
                                                 <input 
                                                     type="text" 
-                                                    id="sociedad_name" 
-                                                    name="sociedad_name" 
-                                                    class="form-control" 
+                                                    class="form-control autocomplete-input" 
                                                     placeholder="Buscar sociedad..." 
-                                                    readonly 
-                                                    aria-label="Buscar sociedad" 
-                                                    aria-describedby="btnSearch"
+                                                    aria-label="Buscar sociedad"
+                                                    data-input-type="sociedad"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('sociedad')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-sociedad"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('sociedad')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                     
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel">
-                                                <label for="id_sociedad">Tipo de Operación</label>
+                                                <label for="trade_operation_type">Tipo de Operacion</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_trade_operation_type" name="id_trade_operation_type">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_trade_operation_type" name="id_trade_operation_type">
                                                 <input 
                                                     type="text" 
-                                                    id="trade_operation_type_name" 
-                                                    name="trade_operation_type_name" 
-                                                    class="form-control" 
-                                                    placeholder="Buscar Tipo de Operación..." 
-                                                    readonly 
-                                                    aria-label="Buscar Tipo de Operación" 
-                                                    aria-describedby="btnSearch"
+                                                    class="form-control autocomplete-input" 
+                                                    placeholder="Buscar tipo de operacion..." 
+                                                    aria-label="Buscar tipo de operación"
+                                                    data-input-type="trade_operation_type"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('trade_operation_type')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-trade_operation_type"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('trade_operation_type')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
 
@@ -154,31 +142,25 @@
                                             <div class="customfieldLabel">
                                                 <label for="id_counterparty">Cliente</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_counterparty" name="id_counterparty">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_counterparty" name="id_counterparty">
                                                 <input 
                                                     type="text" 
-                                                    id="counterparty_name" 
-                                                    name="counterparty_name" 
-                                                    class="form-control" 
-                                                    placeholder="Buscar cliente..." 
-                                                    readonly 
-                                                    aria-label="Buscar cliente" 
-                                                    aria-describedby="btnSearch"
+                                                    class="form-control autocomplete-input" 
+                                                    placeholder="Buscar Cliente..." 
+                                                    aria-label="Buscar Cliente"
+                                                    data-input-type="counterparty"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('counterparty')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-counterparty"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('counterparty')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,31 +170,25 @@
                                             <div class="customfieldLabel">
                                                 <label for="id_commodity">Commodity</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_commodity" name="id_commodity">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_commodity" name="id_commodity">
                                                 <input 
                                                     type="text" 
-                                                    id="commodity_name_short" 
-                                                    name="commodity_name_short" 
-                                                    class="form-control" 
+                                                    class="form-control autocomplete-input" 
                                                     placeholder="Buscar Commodity..." 
-                                                    readonly 
-                                                    aria-label="Buscar Commodity" 
-                                                    aria-describedby="btnSearch"
+                                                    aria-label="Buscar Commodity"
+                                                    data-input-type="commodity"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('commodity')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-commodity"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('commodity')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                 

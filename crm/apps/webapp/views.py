@@ -319,18 +319,38 @@ def fetch_data(request, table_name):
 
 
 
+
+
+
+
 def search_autocomplete(request, input_type):
     query = request.GET.get("q", "").strip()
 
-    if len(query) >= 3:
-        if input_type == "trader":
-            results = Trader.objects.filter(trader_name__icontains=query)[:10]
-            data = [{"id": t.id_trader, "name": t.trader_name} for t in results]
-        elif input_type == "counterparty":
-            results = Counterparty.objects.filter(counterparty_name__icontains=query)[:10]
-            data = [{"id": c.id_counterparty, "name": c.counterparty_name} for c in results]
-        else:
-            data = []
+    if len(query) < 3:
+        return JsonResponse([], safe=False)
+
+    model_map = {
+        "cost_center": (Cost_Center, "cost_center_name", "id_cost_center"),
+        "sociedad": (Sociedad, "sociedad_name", "id_sociedad"),
+        "trader": (Trader, "trader_name", "id_trader"),
+        "commodity_group": (Commodity_Group, "commodity_group_name", "id_commodity_group"),
+        "commodity_type": (Commodity_Type, "commodity_type_name", "id_commodity_type"),
+        "commodity_subtype": (Commodity_Subtype, "commodity_subtype_name", "id_commodity_subtype"),
+        "commodity": (Commodity, "commodity_name_short", "id_commodity"),
+        "delivery_format": (Delivery_Format, "delivery_format_name", "id_delivery_format"),
+        "additive": (Additive, "additive_name", "id_additive"),
+        "counterparty": (Counterparty, "counterparty_name", "id_counterparty"),
+        "counterparty_facility": (Counterparty_Facility, "counterparty_facility_name", "id_counterparty_facility"),
+        "broker": (Broker, "broker_name", "id_broker"),
+        "currency": (Currency, "currency_name", "id_currency"),
+        "icoterm": (ICOTERM, "icoterm_name", "id_icoterm"),
+        "trade_operation_type": (Trade_Operation_Type, "trade_operation_type_name", "id_trade_operation_type"),
+    }
+
+    if input_type in model_map:
+        model, name_field, id_field = model_map[input_type]
+        results = model.objects.filter(**{f"{name_field}__icontains": query})[:10]
+        data = [{"id": getattr(obj, id_field), "name": getattr(obj, name_field)} for obj in results]
     else:
         data = []
 
