@@ -2,7 +2,7 @@
 
 
 from django.urls import path
-from .views import live_search, fetch_crypto_data_view, fetch_data
+from .views import live_search, fetch_crypto_data_view, fetch_data, search_autocomplete
 
 
 from . import views
@@ -51,5 +51,7 @@ urlpatterns = [
     path('table_view', views.table_view, name="table_view"),
 
     path('update-row/', views.update_row, name='update_row'),
+
+    path("autocomplete/<str:input_type>s/", search_autocomplete, name="search_autocomplete"),
     
 ]

@@ -18,52 +18,54 @@
                     <form method="POST" autocomplete="off">
                         {% csrf_token %}
                         
-                        <div>
+                            <div>
 
-                            <!-- TITULO DEL AREA-->
+                                <!-- TITULO DEL AREA-->
 
-                            <div class="secHead">
-                                <div class="secTitle">Section del tio Gilito</div>
-                            </div>
+                                <div class="secHead">
+                                    <div class="secTitle">Section del tio Gilito</div>
+                                </div>
 
-                            <!-- INFORMACIÓN DEL TRADER Y DE LA FECHA-->
+                                <!-- INFORMACIÓN DEL TRADER Y DE LA FECHA-->
 
-
-                            <div class="create-two-column pb-xxl-4">
+                                <!-- FUNCIONA -->
+                                
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel">
                                                 <label for="id_trader">Trader</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_trader" name="id_trader">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_trader" name="id_trader">
                                                 <input 
                                                     type="text" 
-                                                    id="trader_name" 
-                                                    name="trader_name" 
-                                                    class="form-control" 
+                                                    class="form-control autocomplete-input" 
                                                     placeholder="Buscar trader..." 
-                                                    readonly 
-                                                    aria-label="Buscar trader" 
-                                                    aria-describedby="btnSearch"
+                                                    aria-label="Buscar trader"
+                                                    data-input-type="trader"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('trader')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-trader"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('trader')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
+                                                
+                                                
+
                                             </div>
+                                            
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
+                                
+                                
+                                
+                                    
                                 <div class="container1">
                                     <div class="formContainer">
                                         <div class="formFields">

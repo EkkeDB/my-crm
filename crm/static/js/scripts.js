@@ -197,3 +197,66 @@ function selectRow(id, name, inputName) {
     // Close the modal
     $('#myModal').modal('hide');
 }
+
+
+
+
+
+// Abajo funciona
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".autocomplete-input").forEach(input => {
+        input.addEventListener("input", function() {
+            fetchAutocomplete(this);
+        });
+    });
+});
+
+function fetchAutocomplete(input) {
+    let inputType = input.dataset.inputType;  // Get type (e.g., 'trader', 'counterparty')
+    let query = input.value.trim();
+    let inputGroup = input.closest(".input-group");  // Find the parent .input-group
+    let list = inputGroup.querySelector(".autocomplete-items");  // Find the .autocomplete-items inside the .input-group
+    list.innerHTML = "";  // Clear any previous results
+
+    if (query.length < 3) return;  // Do not fetch if input is too short
+
+    fetch(`/autocomplete/${inputType}s/?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length === 0) {
+                list.innerHTML = "<div class='autocomplete-item'>No results</div>";
+                return;
+            }
+
+            data.forEach(item => {
+                let div = document.createElement("div");
+                div.classList.add("autocomplete-item");
+
+                // Highlight matching part of the name
+                let regex = new RegExp(query, "gi");
+                let highlightedName = item.name.replace(regex, match => `<b>${match}</b>`);
+
+                div.innerHTML = highlightedName;
+                div.onclick = () => {
+                    document.getElementById(`id_${inputType}`).value = item.id;
+                    input.value = item.name;
+                    list.innerHTML = "";  // Clear the list after selection
+                };
+
+                list.appendChild(div);  // Append to the correct list
+            });
+
+            list.style.display = "block";  // Show the list
+        })
+        .catch(error => console.error("Error fetching autocomplete:", error));
+}
+
+// Close dropdown when clicking outside
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".autocomplete-input")) {
+        document.querySelectorAll(".autocomplete-items").forEach(list => list.style.display = "none");
+    }
+});
+

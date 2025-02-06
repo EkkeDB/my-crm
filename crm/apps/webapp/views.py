@@ -316,3 +316,22 @@ def fetch_data(request, table_name):
 
     data = list(model.objects.values())
     return JsonResponse({'data': data})
+
+
+
+def search_autocomplete(request, input_type):
+    query = request.GET.get("q", "").strip()
+
+    if len(query) >= 3:
+        if input_type == "trader":
+            results = Trader.objects.filter(trader_name__icontains=query)[:10]
+            data = [{"id": t.id_trader, "name": t.trader_name} for t in results]
+        elif input_type == "counterparty":
+            results = Counterparty.objects.filter(counterparty_name__icontains=query)[:10]
+            data = [{"id": c.id_counterparty, "name": c.counterparty_name} for c in results]
+        else:
+            data = []
+    else:
+        data = []
+
+    return JsonResponse(data, safe=False)

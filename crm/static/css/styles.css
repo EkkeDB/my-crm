@@ -11461,3 +11461,19 @@ body {
 }
 
 
+
+.autocomplete-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  width: 100%; /* Ensure the dropdown takes full width */
+}
+
+
