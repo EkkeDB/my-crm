@@ -197,63 +197,52 @@
                                             <div class="customfieldLabel">
                                                 <label for="id_delivery_format">Formato</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_delivery_format" name="id_delivery_format">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_delivery_format" name="id_delivery_format">
                                                 <input 
                                                     type="text" 
-                                                    id="delivery_format_name" 
-                                                    name="delivery_format_name" 
-                                                    class="form-control" 
-                                                    placeholder="Buscar Formatos..." 
-                                                    readonly 
-                                                    aria-label="Buscar Formatos" 
-                                                    aria-describedby="btnSearch"
+                                                    class="form-control autocomplete-input" 
+                                                    placeholder="Buscar formato..." 
+                                                    aria-label="Buscar formato"
+                                                    data-input-type="delivery_format"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('delivery_format')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-delivery_format"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('delivery_format')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
+
                                     <div class="formContainer">
                                         <div class="formFields">
                                             <div class="customfieldLabel">
-                                                <label for="id_additive">Aditivos</label>
+                                                <label for="id_additive">Commodity</label>
                                             </div>
-                                            <div class="input-group">
-                                                <!-- Hidden input to store the ID -->
-                                                <input type="hidden" id="id_additive" name="id_additive">
+                                            <div class="input-group" style="position: relative;">
                                                 
-                                                <!-- Visible input to display the nombre_sociedad -->
+                                                <input type="hidden" id="id_additive" name="id_additive">
                                                 <input 
                                                     type="text" 
-                                                    id="additive_name" 
-                                                    name="additive_name" 
-                                                    class="form-control" 
+                                                    class="form-control autocomplete-input" 
                                                     placeholder="Buscar Aditivos..." 
-                                                    readonly 
-                                                    aria-label="Buscar Aditivos" 
-                                                    aria-describedby="btnSearch"
+                                                    aria-label="Buscar Adicivos"
+                                                    data-input-type="additive"
+                                                    autocomplete="off"
                                                 />
-                                                <!-- Button inside the input field -->
-                                                <button 
-                                                    class="btn btn-outline-secondary" 
-                                                    type="button" 
-                                                    id="btnSearch" 
-                                                    onclick="openModal('additive')"
-                                                >
+
+                                                <!-- This is where the dropdown will appear -->
+                                                <div class="autocomplete-items" id="autocomplete-list-additive"></div>
+                                                
+                                                <button class="btn btn-outline-secondary" type="button" onclick="openModal('additive')">
                                                     <i class="fas fa-search"></i>
                                                 </button>
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>

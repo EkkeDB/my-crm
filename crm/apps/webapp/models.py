@@ -108,9 +108,9 @@ class Commodity_Subtype(models.Model):
 class Commodity(models.Model):
     id_commodity                = models.AutoField(primary_key=True)  # Explicit auto-incremental primary key
     commodity_name_short        = models.CharField(max_length=50)
-    commodity_group             = models.ForeignKey(Commodity_Group, on_delete=models.CASCADE)
-    commodity_type              = models.ForeignKey(Commodity_Type, on_delete=models.CASCADE)
-    commodity_subtype           = models.ForeignKey(Commodity_Subtype, on_delete=models.CASCADE)
+    commodity_group             = models.ForeignKey(Commodity_Group, on_delete=models.CASCADE, db_column='id_commodity_group')
+    commodity_type              = models.ForeignKey(Commodity_Type, on_delete=models.CASCADE, db_column='id_commodity_type')
+    commodity_subtype           = models.ForeignKey(Commodity_Subtype, on_delete=models.CASCADE, db_column='id_commodity_subtype')
 
     def __str__(self):
         return f"{self.id_commodity} - {self.commodity_name_short}"
